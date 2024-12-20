@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>TO DO Application</h1>
+    <input id="inputValue" type="text" />
+    <button onclick="addTodo()">Add Todo</button>
+    <div id="1"></div>
+  </body>
+  <script>
+    function addTodo() {
+      const inputVal = document.getElementById("inputValue").value;
+      const newTodo = document.createElement("div");
+      newTodo.innerHTML = inputVal;
+      newTodo.id = inputVal;
+
+      const delButton = document.createElement("button");
+      delButton.innerHTML = "Done";
+      delButton.onclick = function () {
+        const delEle = document.getElementById(inputVal);
+        delEle.parentNode.removeChild(delEle);
+      };
+      newTodo.appendChild(delButton);
+
+      const parent = document.getElementById(1);
+      parent.appendChild(newTodo);
+    }
+  </script>
+</html>
+
+<!-- <html>
+
+<body>
+  <input type="text"></input>
+  <button onclick="addTodo()">Add todo!</button>
+</body>
+<script>
+  let ctr = 1;
+  function deleteTodo(index) {
+    const element = document.getElementById(index);
+    element.parentNode.removeChild(element);
+  }
+
+  function addTodo() {
+    const inputEl = document.querySelector("input");
+    const value = inputEl.value;
+
+    const newDivEl = document.createElement("div");
+    newDivEl.setAttribute("id", ctr);
+    newDivEl.innerHTML = "<div>" + value + '</div><button onclick="deleteTodo(' + ctr + ')">delete</button>';
+    ctr = ctr + 1;
+
+    document.querySelector("body").appendChild(newDivEl)
+  }
+</script>
+
+</html> -->
