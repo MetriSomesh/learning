@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Send Request Using Button</h1>
+    <br />
+    <br />
+    <span>Num 1</span>
+    <input id="no1" type="number" placeholder="Enter First Number" />
+    <br />
+    <span>Num 2</span>
+    <input id="no2" type="number" placeholder="Enter Second Number" />
+    <br />
+
+    <button onclick="handleClick()">Send</button>
+    <br />
+    <br />
+    <span id="Answer"></span>
+  </body>
+  <script>
+    async function handleClick() {
+      const num1 = Number(document.getElementById("no1").value);
+      const num2 = Number(document.getElementById("no2").value);
+      const response = await fetch("http://localhost:3000/sum", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ num1: num1, num2: num2 }),
+      });
+      const sum = await response.json();
+      const spanElement = document.getElementById("Answer");
+      spanElement.innerHTML = "Answer: " + sum.sum;
+    }
+  </script>
+</html>
