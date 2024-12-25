@@ -18,10 +18,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  myCourses: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Purchase",
-  },
+  myCourses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Purchase",
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);
